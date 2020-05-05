@@ -1,59 +1,283 @@
-<div class="3colrow">
-    <div class="col">
-    	<label>Name:</label><input type="text" name="attr_character_name" />
-		<label>Rank:</label><select name="attr_rank" class="dtype">
-		    <option selected value="Rookie">Rookie</option>
-		    <option value="Specialist">Specialist</option>
-		    <option value="LanceCorporal">Lance Corporal</option>
-		    <option value="Corporal">Corporal</option>
-		    <option value="Sergeant">Sergeant</option>
-		    <option value="TechSergeant">Tech Sergeant</option>
-		    <option value="GunnerySergeant">Gunnery Sergeant</option>
-		    <option value="MasterSergeant">Master Sergeant</option>
-        </select>
-		<label>Class:</label><select name="attr_class" class="dtype">
-		    <option value="Assault">Assault</option>
-		    <option value="Grenadier">Grenadier</option>
-		    <option value="Gunner">Gunner</option>
-		    <option value="Infantry">Infantry</option>
-		    <option value="Medic">Medic</option>
-		    <option value="Rocketeer">Rocketeer</option>
-		    <option selected value="Rookie">Rookie</option>
-		    <option value="Scout">Scout</option>
-		    <option value="Sharpshooter">Sharpshooter</option>
-		</select>
-		<label>Nationality:</label><input type="text" name="attr_nationality" />
-		<label>Callsign:</label><input type="text" name="attr_callsign" />
+<div class="main">
+
+	<!-- VITALS SECTION -->
+	<div class="vitals section">
+
+		<div class="section-small flex-center">
+			<label>Name:</label>
+			<input type="text" name="attr_character_name" />
+		</div>
+
+		<div class="section-small flex-center">
+			<label>Rank:</label>
+			<select name="attr_rank">
+			    <option selected value="Rookie">Rookie</option>
+			    <option value="Specialist">Specialist</option>
+			    <option value="LanceCorporal">Lance Corporal</option>
+			    <option value="Corporal">Corporal</option>
+			    <option value="Sergeant">Sergeant</option>
+			    <option value="TechSergeant">Tech Sergeant</option>
+			    <option value="GunnerySergeant">Gunnery Sergeant</option>
+			    <option value="MasterSergeant">Master Sergeant</option>
+	        </select>
+		</div>
+
+		<div class="section-small flex-center">
+			<label>Class:</label>
+			<select name="attr_class">
+			    <option value="Assault">Assault</option>
+			    <option value="Grenadier">Grenadier</option>
+			    <option value="Gunner">Gunner</option>
+			    <option value="Infantry">Infantry</option>
+			    <option value="Medic">Medic</option>
+			    <option value="Rocketeer">Rocketeer</option>
+			    <option selected value="Rookie">Rookie</option>
+			    <option value="Scout">Scout</option>
+			    <option value="Sharpshooter">Sharpshooter</option>
+			</select>
+		</div>
+
+		<div class="section-small flex-center">
+			<label>Nationality:</label>
+			<input type="text" name="attr_nationality" />
+		</div>
+
+		<div class="section-small flex-center">
+			<label>Callsign:</label>
+			<input type="text" name="attr_callsign" />
+		</div>
+
 	</div>
 
-	<div class="col">
-		<label>Missions:</label><input type="number" name="attr_missions" />
-		<label>Kills:</label><input type="number" name="attr_kills" />
-		<label>XP:</label><input type="number" name="attr_xp" />
+	<!-- COUNTS SECTION -->
+	<div class="counts section">
+
+		<div class="section-small flex-center">
+			<label>Missions:</label>
+			<input type="number" name="attr_missions" />
+		</div>
+
+		<div class="section-small flex-center">
+			<label>Kills:</label>
+			<input type="number" name="attr_kills" />
+		</div>
+
+		<div class="section-small flex-center">
+			<label>XP:</label>
+			<input type="number" name="attr_xp" />
+		</div>
+
 	</div>
 
-    <div class="col">
-        <div class="3colrow">
-            
-            <div class="col">
-                <label>Base Health:</label><input type="number" name="attr_base_health" />
-                <label>Aim:</label><input type="number" name="attr_base_aim" />
-            </div>
-            
-            <div class="col">
-                <label>Mobility:</label><input type="number" name="attr_base_mobility" />
-                <label>Defense:</label><input type="number" name="attr_base_defense" />
-            </div>
-            
-            <div class="col">
-                <label>Dodge:</label><input type="number" name="attr_base_dodge" />
-                <label>Will:</label><input type="number" name="attr_base_will" />
-            </div>
-            
-        </div>
-    </div>
+	<!-- STATS SECTION -->
+	<div class="stats section">
+
+		<div class="section-small flex-center">
+			<label>Health:</label>
+			<input type="number" name="attr_base_health" />
+		</div>
+
+		<div class="section-small flex-center">
+			<label>Aim:</label>
+			<input type="number" name="attr_base_aim" />
+		</div>
+
+		<div class="section-small flex-center">
+			<label>Mobility:</label>
+			<input type="number" name="attr_base_mobility" />
+		</div>
+
+		<div class="section-small flex-center">
+			<label>Defense:</label>
+			<input type="number" name="attr_base_defense" />
+		</div>
+
+		<div class="section-small flex-center">
+			<label>Dodge:</label>
+			<input type="number" name="attr_base_dodge" />
+		</div>
+
+		<div class="section-small flex-center">
+			<label>Will:</label>
+			<input type="number" name="attr_base_will" />
+		</div>
+
+	</div>
+
+	<!-- PRIMARY WEAPON SECTION -->
+	<div class="pri-weap section">
+
+		<div class="section-small flex-center">
+			<label>Primary Weapon:</label>
+			<select name="attr_pri-weap">
+			    <option value="AssaultCarbine">Assault Carbine</option>
+			    <option selected value="AssaultRifle">Assault Rifle</option>
+			    <option value="BattleRifle">Battle Rifle</option>
+			    <option value="LMG">LMG</option>
+			    <option value="SAW">SAW</option>
+			    <option value="Shotgun">Shotgun</option>
+			    <option value="SMG">SMG</option>
+			    <option value="SniperRifle">Sniper Rifle</option>
+			    <option value="StrikeRifle">Strike Rifle</option>
+			</select>
+		</div>
+
+		<div class="section-half-width flex-center">
+			<label>Base Dmg</label>
+			<input type="text" name="attr_pri-weap_dmg" />
+		</div>
+		<div class="section-half-width flex-center">
+			<label>Crit Dmg</label>
+			<input type="text" name="attr_pri-weap_crit-dmg" />
+		</div>
+
+		<div class="section-half-width flex-center">
+			<label>Ammo</label>
+			<input type="number" name="attr_pri-weap_ammo" />
+		</div>
+		<div class="section-half-width flex-center">
+			<label>Crit Chance</label>
+			<input type="number" name="attr_pri-weap_crit-chance" />
+		</div>
+
+		<div class="section-half-width flex-center">
+			<label>Mobility</label>
+			<input type="number" name="attr_pri-weap_mobility" />
+		</div>
+		<div class="section-half-width flex-center">
+			<label>Aim</label>
+			<input type="number" name="attr_pri-weap_aim" />
+		</div>
+
+		<div class="section-small flex-center">
+			<label>Effects</label>
+			<input type="text" name="attr_pri-weap_effects" />
+		</div>
+
+	</div>
+
+	<!-- SECONDARY WEAPON SECTION -->
+	<div class="sec-weap section">
+
+		<div class="section-small flex-center">
+			<label>Secondary Weapon:</label>
+			<select name="attr_sec-weap">
+			    <option value="CombatKnife">Combat Knife</option>
+			    <option value="Holotargeter">Holotargeter</option>
+			    <option selected value="Pistol">Pistol</option>
+			    <option value="RocketLauncher">Rocket Launcher</option>
+			    <option value="SawedOffShotgun">Sawed Off Shotgun</option>
+			    <option value="Sword">Sword</option>
+			</select>
+		</div>
+
+		<div class="section-half-width flex-center">
+			<label>Base Dmg</label>
+			<input type="text" name="attr_sec-weap_dmg" />
+		</div>
+		<div class="section-half-width flex-center">
+			<label>Crit Dmg</label>
+			<input type="text" name="attr_sec-weap_crit-dmg" />
+		</div>
+
+		<div class="section-half-width flex-center">
+			<label>Ammo</label>
+			<input type="number" name="attr_sec-weap_ammo" />
+		</div>
+		<div class="section-half-width flex-center">
+			<label>Crit Chance</label>
+			<input type="number" name="attr_sec-weap_crit-chance" />
+		</div>
+
+		<div class="section-half-width flex-center">
+			<label>Mobility</label>
+			<input type="number" name="attr_sec-weap_mobility" />
+		</div>
+		<div class="section-half-width flex-center">
+			<label>Aim</label>
+			<input type="number" name="attr_sec-weap_aim" />
+		</div>
+
+		<div class="section-small flex-center">
+			<label>Effects</label>
+			<input type="text" name="attr_sec-weap_effects" />
+		</div>
+
+	</div>
+
+	<!-- ARMOR SECTION -->
+	<div class="armor section">
+
+		<div class="section-small flex-center">
+			<label>Armor:</label>
+			<select name="attr_armor">
+			    <option value="LeatherJacket">Leather Jacket</option>
+			    <option value="TacArmor">Tac Armor</option>
+			    <option selected value="TacVest">Tac Vest</option>
+			</select>
+		</div>
+
+		<div class="section-half-width flex-center">
+			<label>Mobility</label>
+			<input type="number" name="attr_armor_mobility" />
+		</div>
+		<div class="section-half-width flex-center">
+			<label>HP</label>
+			<input type="number" name="attr_armor_hp" />
+		</div>
+
+		<div class="section-half-width flex-center">
+			<label>Armor</label>
+			<input type="number" name="attr_armor_value" />
+		</div>
+		<div class="section-half-width flex-center">
+			<label>Defense</label>
+			<input type="number" name="attr_armor_defense" />
+		</div>
+
+		<div class="section-small flex-center">
+			<label>Effects</label>
+			<input type="text" name="attr_armor_effects" />
+		</div>
+
+	</div>
+
+	<!-- UTILITY ITEM 1 SECTION -->
+	<div class="util-one section">
+
+		<div class="section-small flex-center">
+			<label>Utility Item 1:</label>
+			<select name="attr_util-one">
+			    <option value="LeatherJacket">Leather Jacket</option>
+			    <option value="TacArmor">Tac Armor</option>
+			    <option value="TacVest">Tac Vest</option>
+			</select>
+		</div>
+
+		<div class="section-small flex-center">
+			<label>Effects</label>
+			<input type="text" name="attr_util-one_effects" />
+		</div>
+
+	</div>
+
+	<!-- UTILITY ITEM 2 SECTION -->
+	<div class="util-two section">
+
+		<div class="section-small flex-center">
+			<label>Utility Item 2:</label>
+			<select name="attr_util-two">
+			    <option value="LeatherJacket">Leather Jacket</option>
+			    <option value="TacArmor">Tac Armor</option>
+			    <option value="TacVest">Tac Vest</option>
+			</select>
+		</div>
+
+		<div class="section-small flex-center">
+			<label>Effects</label>
+			<input type="text" name="attr_util-two_effects" />
+		</div>
+
+	</div>
 
 </div>
-
-<hr/>
-
