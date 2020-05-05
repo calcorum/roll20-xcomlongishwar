@@ -1,0 +1,178 @@
+/*-----------------------------------------------------------------*\
+  #SECTIONS
+\*-----------------------------------------------------------------*/
+
+.sheet-flex-center {
+  display: flex;
+  align-items: center;
+}
+
+.sheet-section-small {
+    padding: 5px;
+    height: 30px;
+}
+
+.sheet-section-half-width {
+    padding: 5px;
+    height: 30px;
+}
+
+/*  ----- Character Sheet Structure -------
+
+'.sheet-main' defines the sheet's general structure and dimensions using CSS Grid.
+
+It uses 'Grid template areas' to name  each sheet section,
+so that they can be positioned in the grid easily,
+while also providing a human-readable overview. */
+
+div.sheet-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 3fr 5fr 2fr;
+  grid-template-areas:"vitals    counts    stats"
+                      "pri-weap  sec-weap  armor"
+                      "util-one  util-two  util-three"
+                      "abilities abilities abilities";
+  grid-gap: 6px;
+  /*width:    650px; /* Defines the width and height of the sheet */
+  /*height:   1200px;
+  background-image: url(https://github.com/Roll20/roll20-character-sheets/blob/master/Feast_of_Legends/images/FoLborder.jpg?raw=true);
+  background-size: 650px 900px; /* Sets the sheet border image to same size as sheet */
+  background-repeat: no-repeat;
+}
+
+/* VITALS SECTION */
+
+div.sheet-vitals {
+	grid-area: vitals;
+	margin-left: 15px;
+}
+
+div.sheet-vitals label{
+	width: 50px;
+	padding-left: 5px;
+}
+
+div.sheet-vitals input, select{
+	width: 150px;
+	padding-left: 5px;
+}
+
+/* COUNTS SECTION */
+
+div.sheet-counts {
+	grid-area: counts;
+	margin-left: 45px;
+}
+
+div.sheet-counts label{
+	width: 90px;
+	padding-left: 5px;
+}
+
+div.sheet-counts input, select{
+	width: 120px;
+	padding-left: 5px;
+}
+
+/* STATS SECTION */
+
+div.sheet-stats {
+	grid-area: stats;
+	margin-left: -15px;
+}
+
+div.sheet-stats label{
+	width: 90px;
+	padding-left: 5px;
+}
+
+div.sheet-stats input, select{
+	width: 120px;
+	padding-left: 5px;
+}
+
+/* PRIMARY WEAPON SECTION */
+
+div.sheet-pri-weap {
+	grid-area: pri-weap;
+	margin-left: -15px;
+}
+
+div.sheet-pri-weap label{
+	width: 90px;
+	padding-left: 5px;
+}
+
+div.sheet-pri-weap input, select{
+	width: 120px;
+	padding-left: 5px;
+}
+
+/* SECONDARY WEAPON SECTION */
+
+div.sheet-sec-weap {
+	grid-area: sec-weap;
+	margin-left: -15px;
+}
+
+div.sheet-sec-weap label{
+	width: 90px;
+	padding-left: 5px;
+}
+
+div.sheet-sec-weap input, select{
+	width: 120px;
+	padding-left: 5px;
+}
+
+/* ARMOR SECTION */
+
+div.sheet-armor {
+	grid-area: armor;
+	margin-left: -15px;
+}
+
+div.sheet-armor label{
+	width: 90px;
+	padding-left: 5px;
+}
+
+div.sheet-armor input, select{
+	width: 120px;
+	padding-left: 5px;
+}
+
+/* UTIL-ONE SECTION */
+
+div.sheet-util-one {
+	grid-area: util-one;
+	margin-left: -15px;
+}
+
+div.sheet-util-one label{
+	width: 90px;
+	padding-left: 5px;
+}
+
+div.sheet-util-one input, select{
+	width: 120px;
+	padding-left: 5px;
+}
+
+/* UTIL-TWO SECTION */
+
+div.sheet-util-two {
+	grid-area: util-two;
+	margin-left: -15px;
+}
+
+div.sheet-util-two label{
+	width: 90px;
+	padding-left: 5px;
+}
+
+div.sheet-util-two input, select{
+	width: 120px;
+	padding-left: 5px;
+}
