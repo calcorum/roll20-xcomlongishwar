@@ -54,17 +54,26 @@
 
 		<div class="section-small flex-center">
 			<label>Missions:</label>
-			<input type="number" name="attr_missions" />
+			<input type="number" name="attr_missions" value=0 />
 		</div>
 
 		<div class="section-small flex-center">
 			<label>Kills:</label>
-			<input type="number" name="attr_kills" />
+			<input type="number" name="attr_kills" value=0 />
 		</div>
 
 		<div class="section-small flex-center">
 			<label>XP:</label>
-			<input type="number" name="attr_xp" />
+			<input type="number" name="attr_xp" value=0 />
+		</div>
+
+		<div class="section-small flex-center">
+			<label></label>
+		</div>
+
+		<div class="section-small flex-center">
+			<label>Hit Points:</label>
+			<input type="number" name="attr_hp" />
 		</div>
 
 	</div>
@@ -74,44 +83,44 @@
 
 		<div class="section-small flex-center">
 			<label>Health:</label>
-			<input type="number" name="attr_base_health" />
+			<input type="number" name="attr_base_health" value=3 />
 		</div>
 
 		<div class="section-small flex-center">
 			<label>Aim:</label>
-			<input type="number" name="attr_base_aim" />
+			<input type="number" name="attr_base_aim" value=65 />
 		</div>
 
 		<div class="section-small flex-center">
 			<label>Mobility:</label>
-			<input type="number" name="attr_base_mobility" />
+			<input type="number" name="attr_base_mobility" value=6 />
 		</div>
 
 		<div class="section-small flex-center">
 			<label>Defense:</label>
-			<input type="number" name="attr_base_defense" />
+			<input type="number" name="attr_base_defense" value=0 />
 		</div>
 
 		<div class="section-small flex-center">
 			<label>Dodge:</label>
-			<input type="number" name="attr_base_dodge" />
+			<input type="number" name="attr_base_dodge" value=0 />
 		</div>
 
 		<div class="section-small flex-center">
 			<label>Will:</label>
-			<input type="number" name="attr_base_will" />
+			<input type="number" name="attr_base_will" value=40 />
 		</div>
 
 	</div>
 
 	<!-- PRIMARY WEAPON SECTION -->
-	<div class="pri-weap section">
+	<div class="priweap section">
 
 		<div class="section-small flex-center">
 			<label>Primary Weapon:</label>
-			<select name="attr_pri-weap">
+			<select name="attr_priweap">
 			    <option value="AssaultCarbine">Assault Carbine</option>
-			    <option selected value="AssaultRifle">Assault Rifle</option>
+			    <option value="AssaultRifle">Assault Rifle</option>
 			    <option value="BattleRifle">Battle Rifle</option>
 			    <option value="LMG">LMG</option>
 			    <option value="SAW">SAW</option>
@@ -124,34 +133,34 @@
 
 		<div class="section-half-width flex-center">
 			<label>Base Dmg</label>
-			<input type="text" name="attr_pri-weap_dmg" />
+			<input type="text" name="attr_priweap_dmg" />
 		</div>
 		<div class="section-half-width flex-center">
 			<label>Crit Dmg</label>
-			<input type="text" name="attr_pri-weap_crit-dmg" />
+			<input type="text" name="attr_priweap_critdmg" />
 		</div>
 
 		<div class="section-half-width flex-center">
 			<label>Ammo</label>
-			<input type="number" name="attr_pri-weap_ammo" />
+			<input type="number" name="attr_priweap_ammo" />
 		</div>
 		<div class="section-half-width flex-center">
 			<label>Crit Chance</label>
-			<input type="number" name="attr_pri-weap_crit-chance" />
+			<input type="number" name="attr_priweap_critchance" />
 		</div>
 
 		<div class="section-half-width flex-center">
 			<label>Mobility</label>
-			<input type="number" name="attr_pri-weap_mobility" />
+			<input type="number" name="attr_priweap_mobility" />
 		</div>
 		<div class="section-half-width flex-center">
 			<label>Aim</label>
-			<input type="number" name="attr_pri-weap_aim" />
+			<input type="number" name="attr_priweap_aim" />
 		</div>
 
 		<div class="section-small flex-center">
 			<label>Effects</label>
-			<input type="text" name="attr_pri-weap_effects" />
+			<input type="text" name="attr_priweap_effects" />
 		</div>
 
 	</div>
@@ -164,7 +173,7 @@
 			<select name="attr_sec-weap">
 			    <option value="CombatKnife">Combat Knife</option>
 			    <option value="Holotargeter">Holotargeter</option>
-			    <option selected value="Pistol">Pistol</option>
+			    <option value="Pistol">Pistol</option>
 			    <option value="RocketLauncher">Rocket Launcher</option>
 			    <option value="SawedOffShotgun">Sawed Off Shotgun</option>
 			    <option value="Sword">Sword</option>
@@ -177,7 +186,7 @@
 		</div>
 		<div class="section-half-width flex-center">
 			<label>Crit Dmg</label>
-			<input type="text" name="attr_sec-weap_crit-dmg" />
+			<input type="text" name="attr_sec-weap_critdmg" />
 		</div>
 
 		<div class="section-half-width flex-center">
@@ -186,7 +195,7 @@
 		</div>
 		<div class="section-half-width flex-center">
 			<label>Crit Chance</label>
-			<input type="number" name="attr_sec-weap_crit-chance" />
+			<input type="number" name="attr_sec-weap_critchance" />
 		</div>
 
 		<div class="section-half-width flex-center">
@@ -213,7 +222,7 @@
 			<select name="attr_armor">
 			    <option value="LeatherJacket">Leather Jacket</option>
 			    <option value="TacArmor">Tac Armor</option>
-			    <option selected value="TacVest">Tac Vest</option>
+			    <option value="TacVest">Tac Vest</option>
 			</select>
 		</div>
 
@@ -243,41 +252,99 @@
 	</div>
 
 	<!-- UTILITY ITEM 1 SECTION -->
-	<div class="util-one section">
+	<div class="utilone section">
 
 		<div class="section-small flex-center">
 			<label>Utility Item 1:</label>
-			<select name="attr_util-one">
-			    <option value="LeatherJacket">Leather Jacket</option>
-			    <option value="TacArmor">Tac Armor</option>
-			    <option value="TacVest">Tac Vest</option>
+			<select name="attr_utilone">
+				<option value="AlienTrophy">Alien Trophy</option>
+				<option value="APGrenade">AP Grenade</option>
+				<option value="BattleScanner">Battle Scanner</option>
+				<option value="CeramicPlating">Ceramic Plating</option>
+				<option value="DrumMags">Drum Mags</option>
+				<option value="Flashbang">Flashbang</option>
+				<option value="HEGrenade">HE Grenade</option>
+				<option value="HighCapMags">High Cap Mags</option>
+				<option value="LaserSight">Laser Sight</option>
+				<option value="Medkit">Medkit</option>
+				<option value="Rocket">Rocket</option>
+				<option value="ShredderRocket">Shredder Rocket</option>
+				<option value="SmokeGrenade">Smoke Grenade</option>
 			</select>
 		</div>
 
 		<div class="section-small flex-center">
 			<label>Effects</label>
-			<input type="text" name="attr_util-one_effects" />
+			<input type="text" name="attr_utilone_effects" />
 		</div>
 
 	</div>
 
 	<!-- UTILITY ITEM 2 SECTION -->
-	<div class="util-two section">
+	<div class="utiltwo section">
 
 		<div class="section-small flex-center">
 			<label>Utility Item 2:</label>
-			<select name="attr_util-two">
-			    <option value="LeatherJacket">Leather Jacket</option>
-			    <option value="TacArmor">Tac Armor</option>
-			    <option value="TacVest">Tac Vest</option>
+			<select name="attr_utiltwo">
+				<option value="AlienTrophy">Alien Trophy</option>
+				<option value="APGrenade">AP Grenade</option>
+				<option value="BattleScanner">Battle Scanner</option>
+				<option value="CeramicPlating">Ceramic Plating</option>
+				<option value="DrumMags">Drum Mags</option>
+				<option value="Flashbang">Flashbang</option>
+				<option value="HEGrenade">HE Grenade</option>
+				<option value="HighCapMags">High Cap Mags</option>
+				<option value="LaserSight">Laser Sight</option>
+				<option value="Medkit">Medkit</option>
+				<option value="Rocket">Rocket</option>
+				<option value="ShredderRocket">Shredder Rocket</option>
+				<option value="SmokeGrenade">Smoke Grenade</option>
 			</select>
 		</div>
 
 		<div class="section-small flex-center">
 			<label>Effects</label>
-			<input type="text" name="attr_util-two_effects" />
+			<input type="text" name="attr_utiltwo_effects" />
 		</div>
 
 	</div>
 
 </div>
+
+<script type="text/worker">
+
+console.log("Please Help Cal");
+
+on("change:priweap sheet:opened", function() {
+    console.log("**CAL** primary weapon changed");
+	getAttrs(["priweap"], function(values) {
+		console.log("**CAL** priweap = " + values["priweap"]);
+		switch(values["priweap"]) {
+			case "AssaultRifle":
+				setAttrs({
+					priweap_dmg: "2+1d3",
+					priweap_critdmg: "2",
+					priweap_ammo: "3",
+					priweap_critchance: "8",
+					priweap_mobility: "0",
+					priweap_daim: "0",
+					priweap_effects: "None",
+				});
+				break;
+			default:
+				console.log("**CAL** weapon invalid");
+				setAttrs({
+					priweap_dmg: "",
+					priweap_critdmg: "",
+					priweap_ammo: "",
+					priweap_critchance: "",
+					priweap_mobility: "",
+					priweap_daim: "",
+					priweap_effects: "",
+				});
+				break;
+		}
+	});
+});
+
+</script>
