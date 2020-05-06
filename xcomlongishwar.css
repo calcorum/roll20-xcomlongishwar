@@ -28,10 +28,10 @@ while also providing a human-readable overview. */
 div.sheet-main {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 3fr 5fr 2fr;
+  grid-template-rows: 3.5fr 5fr 2fr;
   grid-template-areas:"vitals    counts    stats"
-                      "pri-weap  sec-weap  armor"
-                      "util-one  util-two  util-three"
+                      "priweap  secweap  armor"
+                      "utilone  utiltwo  utilthree"
                       "abilities abilities abilities";
   grid-gap: 6px;
   /*width:    650px; /* Defines the width and height of the sheet */
@@ -94,17 +94,17 @@ div.sheet-stats input, select{
 
 /* PRIMARY WEAPON SECTION */
 
-div.sheet-pri-weap {
-	grid-area: pri-weap;
+div.sheet-priweap {
+	grid-area: priweap;
 	margin-left: -15px;
 }
 
-div.sheet-pri-weap label{
+div.sheet-priweap label{
 	width: 90px;
 	padding-left: 5px;
 }
 
-div.sheet-pri-weap input, select{
+div.sheet-priweap input, select{
 	width: 120px;
 	padding-left: 5px;
 }
@@ -112,7 +112,7 @@ div.sheet-pri-weap input, select{
 /* SECONDARY WEAPON SECTION */
 
 div.sheet-sec-weap {
-	grid-area: sec-weap;
+	grid-area: secweap;
 	margin-left: -15px;
 }
 
@@ -146,7 +146,7 @@ div.sheet-armor input, select{
 /* UTIL-ONE SECTION */
 
 div.sheet-util-one {
-	grid-area: util-one;
+	grid-area: utilone;
 	margin-left: -15px;
 }
 
@@ -163,7 +163,7 @@ div.sheet-util-one input, select{
 /* UTIL-TWO SECTION */
 
 div.sheet-util-two {
-	grid-area: util-two;
+	grid-area: utiltwo;
 	margin-left: -15px;
 }
 
