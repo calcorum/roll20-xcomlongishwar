@@ -76,6 +76,11 @@
 			<input type="number" name="attr_hp" />
 		</div>
 
+		<div class="section-small flex-center">
+			<label>Mobility:</label>
+			<input type="number" name="attr_mobility" />
+		</div>
+
 	</div>
 
 	<!-- STATS SECTION -->
@@ -119,15 +124,16 @@
 		<div class="section-small flex-center">
 			<label>Primary Weapon:</label>
 			<select name="attr_priweap">
+				<option value="ArcRifle">Arc Rifle</option>
 			    <option value="AssaultCarbine">Assault Carbine</option>
-			    <option value="AssaultRifle">Assault Rifle</option>
+			    <option selected value="AssaultRifle">Assault Rifle</option>
 			    <option value="BattleRifle">Battle Rifle</option>
 			    <option value="LMG">LMG</option>
 			    <option value="SAW">SAW</option>
 			    <option value="Shotgun">Shotgun</option>
 			    <option value="SMG">SMG</option>
 			    <option value="SniperRifle">Sniper Rifle</option>
-			    <option value="StrikeRifle">Strike Rifle</option>
+			    <option value="MarksmansRifle">Marksmans Rifle</option>
 			</select>
 		</div>
 
@@ -170,7 +176,7 @@
 
 		<div class="section-small flex-center">
 			<label>Secondary Weapon:</label>
-			<select name="attr_sec-weap">
+			<select name="attr_secweap">
 			    <option value="CombatKnife">Combat Knife</option>
 			    <option value="Holotargeter">Holotargeter</option>
 			    <option value="Pistol">Pistol</option>
@@ -182,34 +188,34 @@
 
 		<div class="section-half-width flex-center">
 			<label>Base Dmg</label>
-			<input type="text" name="attr_sec-weap_dmg" />
+			<input type="text" name="attr_secweap_dmg" />
 		</div>
 		<div class="section-half-width flex-center">
 			<label>Crit Dmg</label>
-			<input type="text" name="attr_sec-weap_critdmg" />
+			<input type="text" name="attr_secweap_critdmg" />
 		</div>
 
 		<div class="section-half-width flex-center">
 			<label>Ammo</label>
-			<input type="number" name="attr_sec-weap_ammo" />
+			<input type="number" name="attr_secweap_ammo" />
 		</div>
 		<div class="section-half-width flex-center">
 			<label>Crit Chance</label>
-			<input type="number" name="attr_sec-weap_critchance" />
+			<input type="number" name="attr_secweap_critchance" />
 		</div>
 
 		<div class="section-half-width flex-center">
 			<label>Mobility</label>
-			<input type="number" name="attr_sec-weap_mobility" />
+			<input type="number" name="attr_secweap_mobility" />
 		</div>
 		<div class="section-half-width flex-center">
 			<label>Aim</label>
-			<input type="number" name="attr_sec-weap_aim" />
+			<input type="number" name="attr_secweap_aim" />
 		</div>
 
 		<div class="section-small flex-center">
 			<label>Effects</label>
-			<input type="text" name="attr_sec-weap_effects" />
+			<input type="text" name="attr_secweap_effects" />
 		</div>
 
 	</div>
@@ -219,7 +225,7 @@
 
 		<div class="section-small flex-center">
 			<label>Armor:</label>
-			<select name="attr_armor">
+			<select name="attr_armor_name">
 			    <option value="LeatherJacket">Leather Jacket</option>
 			    <option value="TacArmor">Tac Armor</option>
 			    <option value="TacVest">Tac Vest</option>
@@ -311,36 +317,259 @@
 
 </div>
 
+<!-- 	
+		PRIMARY WEAPON SELECTION 
+		Get Attrs: priweap, base_mobility
+		Set Attrs: priweap attrs, base_mobility
+-->
 <script type="text/worker">
 
-console.log("Please Help Cal");
-
-on("change:priweap sheet:opened", function() {
-    console.log("**CAL** primary weapon changed");
-	getAttrs(["priweap"], function(values) {
-		console.log("**CAL** priweap = " + values["priweap"]);
-		switch(values["priweap"]) {
+on("change:priweap", function() {
+	getAttrs(["priweap", "secweap_mobility", "base_mobility"], function(values) {
+		console.log("**XCOM** priweap = " + values.priweap);
+		switch(values.priweap) {
 			case "AssaultRifle":
 				setAttrs({
 					priweap_dmg: "2+1d3",
 					priweap_critdmg: "2",
 					priweap_ammo: "3",
+					priweap_ammo_max: "3",
 					priweap_critchance: "8",
 					priweap_mobility: "0",
-					priweap_daim: "0",
+					priweap_aim: "0",
 					priweap_effects: "None",
+					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility),
+				});
+				break;
+			case "AssaultCarbine":
+				setAttrs({
+					priweap_dmg: "1+1d3",
+					priweap_critdmg: "2",
+					priweap_ammo: "3",
+					priweap_ammo_max: "3",
+					priweap_critchance: "4",
+					priweap_mobility: "1",
+					priweap_aim: "8",
+					priweap_effects: "None",
+					mobility: parseInt(values.base_mobility) + 1 + parseInt(values.secweap_mobility),
+				});
+				break;
+			case "SMG":
+				setAttrs({
+					priweap_dmg: "1+1d2",
+					priweap_critdmg: "2",
+					priweap_ammo: "2",
+					priweap_ammo_max: "2",
+					priweap_critchance: "0",
+					priweap_mobility: "2",
+					priweap_aim: "0",
+					priweap_effects: "None",
+					mobility: parseInt(values.base_mobility) + 2 + parseInt(values.secweap_mobility),
+				});
+				break;
+			case "BattleRifle":
+				setAttrs({
+					priweap_dmg: "3+1d3",
+					priweap_critdmg: "3",
+					priweap_ammo: "3",
+					priweap_ammo_max: "3",
+					priweap_critchance: "8",
+					priweap_mobility: "-1",
+					priweap_aim: "0",
+					priweap_effects: "Aim -6 if 2nd action",
+					mobility: parseInt(values.base_mobility) -1 + parseInt(values.secweap_mobility),
+				});
+				break;
+			case "Shotgun":
+				setAttrs({
+					priweap_dmg: "3+1d5",
+					priweap_critdmg: "4",
+					priweap_ammo: "4",
+					priweap_ammo_max: "4",
+					priweap_critchance: "16",
+					priweap_mobility: "0",
+					priweap_aim: "0",
+					priweap_effects: "Aim +25; Aim -5 per tile > 1; Target Armor +50%",
+					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility),
+				});
+				break;
+			case "SniperRifle":
+				setAttrs({
+					priweap_dmg: "3+1d3",
+					priweap_critdmg: "2",
+					priweap_ammo: "5",
+					priweap_ammo_max: "5",
+					priweap_critchance: "20",
+					priweap_mobility: "-1",
+					priweap_aim: "0",
+					priweap_effects: "Aim -30 v adjacent, +5 per tile > 1 (max 0); 2 AP to fire",
+					mobility: parseInt(values.base_mobility) -1 + parseInt(values.secweap_mobility),
+				});
+				break;
+			case "MarksmansRifle":
+				setAttrs({
+					priweap_dmg: "3+1d3",
+					priweap_critdmg: "2",
+					priweap_ammo: "5",
+					priweap_ammo_max: "5",
+					priweap_critchance: "12",
+					priweap_mobility: "0",
+					priweap_aim: "0",
+					priweap_effects: "Aim -30 v adjacent, +5 per tile > 1 (max 0)",
+					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility),
+				});
+				break;
+			case "SAW":
+				setAttrs({
+					priweap_dmg: "3+1d3",
+					priweap_critdmg: "2",
+					priweap_ammo: "6",
+					priweap_ammo_max: "6",
+					priweap_critchance: "0",
+					priweap_mobility: "-1",
+					priweap_aim: "0",
+					priweap_effects: "None",
+					mobility: parseInt(values.base_mobility) -1 + parseInt(values.secweap_mobility),
+				});
+				break;
+			case "LMG":
+				setAttrs({
+					priweap_dmg: "3+1d5",
+					priweap_critdmg: "4",
+					priweap_ammo: "8",
+					priweap_ammo_max: "8",
+					priweap_critchance: "0",
+					priweap_mobility: "-1",
+					priweap_aim: "0",
+					priweap_effects: "Grants Squadsight ability; 2 AP to fire",
+					mobility: parseInt(values.base_mobility) -1 + parseInt(values.secweap_mobility),
+				});
+				break;
+			case "ArcRifle":
+				setAttrs({
+					priweap_dmg: "0",
+					priweap_critdmg: "0",
+					priweap_ammo: "0",
+					priweap_ammo_max: "0",
+					priweap_critchance: "0",
+					priweap_mobility: "0",
+					priweap_aim: "0",
+					priweap_effects: "Used to stun enemies; 92%/84%/68%/36% vs 1/2/3/4+ Health",
+					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility),
 				});
 				break;
 			default:
-				console.log("**CAL** weapon invalid");
+				console.log("**XCOM** weapon invalid");
 				setAttrs({
 					priweap_dmg: "",
 					priweap_critdmg: "",
 					priweap_ammo: "",
+					priweap_ammo_max: "",
 					priweap_critchance: "",
 					priweap_mobility: "",
-					priweap_daim: "",
+					priweap_aim: "",
 					priweap_effects: "",
+					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility),
+				});
+				break;
+		}
+	});
+});
+
+on("change:secweap", function() {
+	getAttrs(["secweap", "priweap_mobility", "base_mobility"], function(values) {
+		console.log("**XCOM** secweap = " + values.secweap);
+		switch(values.secweap) {
+			case "CombatKnife":
+				setAttrs({
+					secweap_dmg: "1+1d3",
+					secweap_critdmg: "3",
+					secweap_ammo: "Inf",
+					secweap_ammo_max: "Inf",
+					secweap_critchance: "20",
+					secweap_mobility: "0",
+					secweap_aim: "20",
+					secweap_effects: "None",
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility),
+				});
+				break;
+			case "Pistol":
+				setAttrs({
+					secweap_dmg: "1d3",
+					secweap_critdmg: "2",
+					secweap_ammo: "Inf",
+					secweap_ammo_max: "Inf",
+					secweap_critchance: "0",
+					secweap_mobility: "0",
+					secweap_aim: "0",
+					secweap_effects: "Aim -5 per tile past 9",
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility),
+				});
+				break;
+			case "SawedOffShotgun":
+				setAttrs({
+					secweap_dmg: "4+1d6",
+					secweap_critdmg: "4",
+					secweap_ammo: "1",
+					secweap_ammo_max: "1",
+					secweap_critchance: "16",
+					secweap_mobility: "-1",
+					secweap_aim: "20",
+					secweap_effects: "Max range: 2 tiles; Target Armor +50%; No reloads",
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) -1,
+				});
+				break;
+			case "Sword":
+				setAttrs({
+					secweap_dmg: "2+1d3",
+					secweap_critdmg: "3",
+					secweap_ammo: "Inf",
+					secweap_ammo_max: "Inf",
+					secweap_critchance: "10",
+					secweap_mobility: "0",
+					secweap_aim: "20",
+					secweap_effects: "None",
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility),
+				});
+				break;
+			case "RocketLauncher":
+				setAttrs({
+					secweap_dmg: "4+1d6",
+					secweap_critdmg: "0",
+					secweap_ammo: "2",
+					secweap_ammo_max: "2",
+					secweap_critchance: "0",
+					secweap_mobility: "-1",
+					secweap_aim: "0",
+					secweap_effects: "Radius 3; Aim -30 if 2nd action",
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) -1,
+				});
+				break;
+			case "Holotargeter":
+				setAttrs({
+					secweap_dmg: "0",
+					secweap_critdmg: "0",
+					secweap_ammo: "Inf",
+					secweap_ammo_max: "Inf",
+					secweap_critchance: "0",
+					secweap_mobility: "0",
+					secweap_aim: "0",
+					secweap_effects: "Aim +10 v Target; ends turn",
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility),
+				});
+				break;
+			default:
+				console.log("**XCOM** weapon invalid");
+				setAttrs({
+					secweap_dmg: "",
+					secweap_critdmg: "",
+					secweap_ammo: "",
+					secweap_ammo_max: "",
+					secweap_critchance: "",
+					secweap_mobility: "",
+					secweap_aim: "",
+					secweap_effects: "",
+					mobility: parseInt(values.base_mobility),
 				});
 				break;
 		}
