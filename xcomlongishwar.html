@@ -317,15 +317,10 @@
 
 </div>
 
-<!-- 	
-		PRIMARY WEAPON SELECTION 
-		Get Attrs: priweap, base_mobility
-		Set Attrs: priweap attrs, base_mobility
--->
 <script type="text/worker">
 
 on("change:priweap", function() {
-	getAttrs(["priweap", "secweap_mobility", "base_mobility"], function(values) {
+	getAttrs(["priweap", "secweap_mobility", "base_mobility", "armor_mobility"], function(values) {
 		console.log("**XCOM** priweap = " + values.priweap);
 		switch(values.priweap) {
 			case "AssaultRifle":
@@ -338,7 +333,7 @@ on("change:priweap", function() {
 					priweap_mobility: "0",
 					priweap_aim: "0",
 					priweap_effects: "None",
-					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility),
+					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			case "AssaultCarbine":
@@ -351,7 +346,7 @@ on("change:priweap", function() {
 					priweap_mobility: "1",
 					priweap_aim: "8",
 					priweap_effects: "None",
-					mobility: parseInt(values.base_mobility) + 1 + parseInt(values.secweap_mobility),
+					mobility: parseInt(values.base_mobility) + 1 + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			case "SMG":
@@ -364,7 +359,7 @@ on("change:priweap", function() {
 					priweap_mobility: "2",
 					priweap_aim: "0",
 					priweap_effects: "None",
-					mobility: parseInt(values.base_mobility) + 2 + parseInt(values.secweap_mobility),
+					mobility: parseInt(values.base_mobility) + 2 + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			case "BattleRifle":
@@ -377,7 +372,7 @@ on("change:priweap", function() {
 					priweap_mobility: "-1",
 					priweap_aim: "0",
 					priweap_effects: "Aim -6 if 2nd action",
-					mobility: parseInt(values.base_mobility) -1 + parseInt(values.secweap_mobility),
+					mobility: parseInt(values.base_mobility) -1 + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			case "Shotgun":
@@ -390,7 +385,7 @@ on("change:priweap", function() {
 					priweap_mobility: "0",
 					priweap_aim: "0",
 					priweap_effects: "Aim +25; Aim -5 per tile > 1; Target Armor +50%",
-					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility),
+					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			case "SniperRifle":
@@ -403,7 +398,7 @@ on("change:priweap", function() {
 					priweap_mobility: "-1",
 					priweap_aim: "0",
 					priweap_effects: "Aim -30 v adjacent, +5 per tile > 1 (max 0); 2 AP to fire",
-					mobility: parseInt(values.base_mobility) -1 + parseInt(values.secweap_mobility),
+					mobility: parseInt(values.base_mobility) -1 + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			case "MarksmansRifle":
@@ -416,7 +411,7 @@ on("change:priweap", function() {
 					priweap_mobility: "0",
 					priweap_aim: "0",
 					priweap_effects: "Aim -30 v adjacent, +5 per tile > 1 (max 0)",
-					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility),
+					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			case "SAW":
@@ -429,7 +424,7 @@ on("change:priweap", function() {
 					priweap_mobility: "-1",
 					priweap_aim: "0",
 					priweap_effects: "None",
-					mobility: parseInt(values.base_mobility) -1 + parseInt(values.secweap_mobility),
+					mobility: parseInt(values.base_mobility) -1 + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			case "LMG":
@@ -442,7 +437,7 @@ on("change:priweap", function() {
 					priweap_mobility: "-1",
 					priweap_aim: "0",
 					priweap_effects: "Grants Squadsight ability; 2 AP to fire",
-					mobility: parseInt(values.base_mobility) -1 + parseInt(values.secweap_mobility),
+					mobility: parseInt(values.base_mobility) -1 + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			case "ArcRifle":
@@ -455,7 +450,7 @@ on("change:priweap", function() {
 					priweap_mobility: "0",
 					priweap_aim: "0",
 					priweap_effects: "Used to stun enemies; 92%/84%/68%/36% vs 1/2/3/4+ Health",
-					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility),
+					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			default:
@@ -469,7 +464,7 @@ on("change:priweap", function() {
 					priweap_mobility: "",
 					priweap_aim: "",
 					priweap_effects: "",
-					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility),
+					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 		}
@@ -477,7 +472,7 @@ on("change:priweap", function() {
 });
 
 on("change:secweap", function() {
-	getAttrs(["secweap", "priweap_mobility", "base_mobility"], function(values) {
+	getAttrs(["secweap", "priweap_mobility", "base_mobility", "armor_mobility"], function(values) {
 		console.log("**XCOM** secweap = " + values.secweap);
 		switch(values.secweap) {
 			case "CombatKnife":
@@ -490,7 +485,7 @@ on("change:secweap", function() {
 					secweap_mobility: "0",
 					secweap_aim: "20",
 					secweap_effects: "None",
-					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility),
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			case "Pistol":
@@ -503,7 +498,7 @@ on("change:secweap", function() {
 					secweap_mobility: "0",
 					secweap_aim: "0",
 					secweap_effects: "Aim -5 per tile past 9",
-					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility),
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),,
 				});
 				break;
 			case "SawedOffShotgun":
@@ -516,7 +511,7 @@ on("change:secweap", function() {
 					secweap_mobility: "-1",
 					secweap_aim: "20",
 					secweap_effects: "Max range: 2 tiles; Target Armor +50%; No reloads",
-					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) -1,
+					mobility: parseInt(values.base_mobility) -1 + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			case "Sword":
@@ -529,7 +524,7 @@ on("change:secweap", function() {
 					secweap_mobility: "0",
 					secweap_aim: "20",
 					secweap_effects: "None",
-					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility),
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),,
 				});
 				break;
 			case "RocketLauncher":
@@ -542,7 +537,7 @@ on("change:secweap", function() {
 					secweap_mobility: "-1",
 					secweap_aim: "0",
 					secweap_effects: "Radius 3; Aim -30 if 2nd action",
-					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) -1,
+					mobility: parseInt(values.base_mobility) -1 + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			case "Holotargeter":
@@ -555,7 +550,7 @@ on("change:secweap", function() {
 					secweap_mobility: "0",
 					secweap_aim: "0",
 					secweap_effects: "Aim +10 v Target; ends turn",
-					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility),
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			default:
@@ -569,7 +564,59 @@ on("change:secweap", function() {
 					secweap_mobility: "",
 					secweap_aim: "",
 					secweap_effects: "",
-					mobility: parseInt(values.base_mobility),
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),
+				});
+				break;
+		}
+	});
+});
+
+on("change:armor_name", function() {
+	getAttrs(["armor_name", "priweap_mobility", "base_mobility", "secweap_mobility", "base_health", "base_defense"], function(values) {
+		console.log("**XCOM** armor_name = " + values.armor_name);
+		switch(values.armor_name) {
+			case "TacArmor":
+				setAttrs({
+					armor_mobility: "0",
+					armor_hp: "2",
+					armor_armor: "0",
+					armor_defense: "0",
+					armor_effects: "None",
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility),
+					hp: parseInt(values.base_health) + 2,
+				});
+				break;
+			case "TacVest":
+				setAttrs({
+					armor_mobility: "2",
+					armor_hp: "1",
+					armor_armor: "0",
+					armor_defense: "0",
+					armor_effects: "None",
+					mobility: parseInt(values.base_mobility) + 2 + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility),
+					hp: parseInt(values.base_health) + 1,
+				});
+				break;
+			case "LeatherJacket":
+				setAttrs({
+					armor_mobility: "4",
+					armor_hp: "0",
+					armor_armor: "0",
+					armor_defense: "0",
+					armor_effects: "None",
+					mobility: parseInt(values.base_mobility) + 4 + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility),
+					hp: parseInt(values.base_health)
+				});
+				break;
+			default:
+				console.log("**XCOM** armor invalid");
+				setAttrs({
+					armor_mobility: "0",
+					armor_hp: "0",
+					armor_armor: "0",
+					armor_defense: "0",
+					armor_effects: "None",
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility),
 				});
 				break;
 		}
