@@ -124,9 +124,10 @@
 		<div class="section-small flex-center">
 			<label>Primary Weapon:</label>
 			<select name="attr_priweap">
+				<option value="None">None</option>
 				<option value="ArcRifle">Arc Rifle</option>
 			    <option value="AssaultCarbine">Assault Carbine</option>
-			    <option selected value="AssaultRifle">Assault Rifle</option>
+			    <option value="AssaultRifle">Assault Rifle</option>
 			    <option value="BattleRifle">Battle Rifle</option>
 			    <option value="LMG">LMG</option>
 			    <option value="SAW">SAW</option>
@@ -177,6 +178,7 @@
 		<div class="section-small flex-center">
 			<label>Secondary Weapon:</label>
 			<select name="attr_secweap">
+				<option value="None">None</option>
 			    <option value="CombatKnife">Combat Knife</option>
 			    <option value="Holotargeter">Holotargeter</option>
 			    <option value="Pistol">Pistol</option>
@@ -226,6 +228,7 @@
 		<div class="section-small flex-center">
 			<label>Armor:</label>
 			<select name="attr_armor_name">
+				<option value="None">None</option>
 			    <option value="LeatherJacket">Leather Jacket</option>
 			    <option value="TacArmor">Tac Armor</option>
 			    <option value="TacVest">Tac Vest</option>
@@ -263,6 +266,7 @@
 		<div class="section-small flex-center">
 			<label>Utility Item 1:</label>
 			<select name="attr_utilone">
+				<option value="None">None</option>
 				<option value="AlienTrophy">Alien Trophy</option>
 				<option value="APGrenade">AP Grenade</option>
 				<option value="BattleScanner">Battle Scanner</option>
@@ -284,6 +288,14 @@
 			<input type="text" name="attr_utilone_effects" />
 		</div>
 
+		<input type="hidden" name="attr_utilone_health" value="0" />
+		<input type="hidden" name="attr_utilone_mobility" value="0" />
+		<input type="hidden" name="attr_utilone_armor" value="0" />
+		<input type="hidden" name="attr_utilone_defense" value="0" />
+		<input type="hidden" name="attr_utilone_will" value="0" />
+		<input type="hidden" name="attr_utilone_aim" value="0" />
+		<input type="hidden" name="attr_utilone_crit" value="0" />
+
 	</div>
 
 	<!-- UTILITY ITEM 2 SECTION -->
@@ -292,6 +304,7 @@
 		<div class="section-small flex-center">
 			<label>Utility Item 2:</label>
 			<select name="attr_utiltwo">
+				<option value="None">None</option>
 				<option value="AlienTrophy">Alien Trophy</option>
 				<option value="APGrenade">AP Grenade</option>
 				<option value="BattleScanner">Battle Scanner</option>
@@ -572,7 +585,7 @@ on("change:secweap", function() {
 });
 
 on("change:armor_name", function() {
-	getAttrs(["armor_name", "priweap_mobility", "base_mobility", "secweap_mobility", "base_health", "base_defense"], function(values) {
+	getAttrs(["armor_name", "priweap_mobility", "base_mobility", "secweap_mobility", "base_health", "base_defense", "utilone_health"], function(values) {
 		console.log("**XCOM** armor_name = " + values.armor_name);
 		switch(values.armor_name) {
 			case "TacArmor":
@@ -583,7 +596,7 @@ on("change:armor_name", function() {
 					armor_defense: "0",
 					armor_effects: "None",
 					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility),
-					hp: parseInt(values.base_health) + 2,
+					hp: parseInt(values.base_health) + 2 + parseInt(values.utilone_health),
 				});
 				break;
 			case "TacVest":
@@ -594,7 +607,7 @@ on("change:armor_name", function() {
 					armor_defense: "0",
 					armor_effects: "None",
 					mobility: parseInt(values.base_mobility) + 2 + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility),
-					hp: parseInt(values.base_health) + 1,
+					hp: parseInt(values.base_health) + 1 + parseInt(values.utilone_health),
 				});
 				break;
 			case "LeatherJacket":
@@ -605,7 +618,7 @@ on("change:armor_name", function() {
 					armor_defense: "0",
 					armor_effects: "None",
 					mobility: parseInt(values.base_mobility) + 4 + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility),
-					hp: parseInt(values.base_health)
+					hp: parseInt(values.base_health) + parseInt(values.utilone_health),
 				});
 				break;
 			default:
@@ -617,6 +630,51 @@ on("change:armor_name", function() {
 					armor_defense: "0",
 					armor_effects: "None",
 					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility),
+					hp: parseInt(values.base_health) + parseInt(values.utilone_health),
+				});
+				break;
+		}
+	});
+});
+
+on("change:utilone", function() {
+	getAttrs(["utilone", "base_health", "armor_hp"], function(values) {
+		console.log("**XCOM** utilone = " + values.utilone);
+		switch(values.utilone) {
+			case "AlienTrophy":
+				setAttrs({
+					utilone_effects: "Gains Steadfast ability",
+					utilone_health: 0,
+					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
+				});
+				break;
+			case "APGrenade":
+				setAttrs({
+					utilone_effects: "6 damage; range 4; radius 2; destroys loot and cover",
+					utilone_health: 0,
+					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
+				});
+				break;
+			case "BattleScanner":
+				setAttrs({
+					utilone_effects: "Reveals the area in Radius 5 for 2 turns; range 5",
+					utilone_health: 0,
+					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
+				});
+				break;
+			case "CeramicPlating":
+				setAttrs({
+					utilone_health: 1,
+					hp: parseInt(values.base_health) + parseInt(values.armor_hp) + 1,
+					utilone_effects: "Can't stack plating",
+				});
+				break;
+			default:
+				console.log("**XCOM** armor invalid");
+				setAttrs({
+					utilone_effects: "None",
+					utilone_health: 1,
+					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
 				});
 				break;
 		}
