@@ -124,11 +124,11 @@
 		<div class="section-small flex-center">
 			<label>Primary Weapon:</label>
 			<select name="attr_priweap">
-				<option value="None">None</option>
 				<option value="ArcRifle">Arc Rifle</option>
 			    <option value="AssaultCarbine">Assault Carbine</option>
-			    <option value="AssaultRifle">Assault Rifle</option>
+			    <option selected value="AssaultRifle">Assault Rifle</option>
 			    <option value="BattleRifle">Battle Rifle</option>
+			    <option value="LaserRifle">Laser Rifle</option>
 			    <option value="LMG">LMG</option>
 			    <option value="SAW">SAW</option>
 			    <option value="Shotgun">Shotgun</option>
@@ -178,7 +178,6 @@
 		<div class="section-small flex-center">
 			<label>Secondary Weapon:</label>
 			<select name="attr_secweap">
-				<option value="None">None</option>
 			    <option value="CombatKnife">Combat Knife</option>
 			    <option value="Holotargeter">Holotargeter</option>
 			    <option value="Pistol">Pistol</option>
@@ -228,7 +227,6 @@
 		<div class="section-small flex-center">
 			<label>Armor:</label>
 			<select name="attr_armor_name">
-				<option value="None">None</option>
 			    <option value="LeatherJacket">Leather Jacket</option>
 			    <option value="TacArmor">Tac Armor</option>
 			    <option value="TacVest">Tac Vest</option>
@@ -295,6 +293,7 @@
 		<input type="hidden" name="attr_utilone_will" value="0" />
 		<input type="hidden" name="attr_utilone_aim" value="0" />
 		<input type="hidden" name="attr_utilone_crit" value="0" />
+		<input type="hidden" name="attr_utilone_priweap_ammo" value="0" />
 
 	</div>
 
@@ -340,11 +339,24 @@ on("change:priweap", function() {
 				setAttrs({
 					priweap_dmg: "2+1d3",
 					priweap_critdmg: "2",
-					priweap_ammo: "3",
-					priweap_ammo_max: "3",
-					priweap_critchance: "8",
-					priweap_mobility: "0",
-					priweap_aim: "0",
+					priweap_ammo: 3,
+					priweap_ammo_max: 3,
+					priweap_critchance: 8,
+					priweap_mobility: 0,
+					priweap_aim: 0,
+					priweap_effects: "None",
+					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
+				});
+				break;
+			case "LaserRifle":
+				setAttrs({
+					priweap_dmg: "3+1d3",
+					priweap_critdmg: "2",
+					priweap_ammo: 3,
+					priweap_ammo_max: 3,
+					priweap_critchance: 8,
+					priweap_mobility: 0,
+					priweap_aim: 6,
 					priweap_effects: "None",
 					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
@@ -353,11 +365,11 @@ on("change:priweap", function() {
 				setAttrs({
 					priweap_dmg: "1+1d3",
 					priweap_critdmg: "2",
-					priweap_ammo: "3",
-					priweap_ammo_max: "3",
-					priweap_critchance: "4",
-					priweap_mobility: "1",
-					priweap_aim: "8",
+					priweap_ammo: 3,
+					priweap_ammo_max: 3,
+					priweap_critchance: 4,
+					priweap_mobility: 1,
+					priweap_aim: 8,
 					priweap_effects: "None",
 					mobility: parseInt(values.base_mobility) + 1 + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
@@ -366,11 +378,11 @@ on("change:priweap", function() {
 				setAttrs({
 					priweap_dmg: "1+1d2",
 					priweap_critdmg: "2",
-					priweap_ammo: "2",
-					priweap_ammo_max: "2",
-					priweap_critchance: "0",
-					priweap_mobility: "2",
-					priweap_aim: "0",
+					priweap_ammo: 2,
+					priweap_ammo_max: 2,
+					priweap_critchance: 0,
+					priweap_mobility: 2,
+					priweap_aim: 0,
 					priweap_effects: "None",
 					mobility: parseInt(values.base_mobility) + 2 + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
@@ -379,11 +391,11 @@ on("change:priweap", function() {
 				setAttrs({
 					priweap_dmg: "3+1d3",
 					priweap_critdmg: "3",
-					priweap_ammo: "3",
-					priweap_ammo_max: "3",
-					priweap_critchance: "8",
-					priweap_mobility: "-1",
-					priweap_aim: "0",
+					priweap_ammo: 3,
+					priweap_ammo_max: 3,
+					priweap_critchance: 8,
+					priweap_mobility: -1,
+					priweap_aim: 0,
 					priweap_effects: "Aim -6 if 2nd action",
 					mobility: parseInt(values.base_mobility) -1 + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
@@ -392,11 +404,11 @@ on("change:priweap", function() {
 				setAttrs({
 					priweap_dmg: "3+1d5",
 					priweap_critdmg: "4",
-					priweap_ammo: "4",
-					priweap_ammo_max: "4",
-					priweap_critchance: "16",
-					priweap_mobility: "0",
-					priweap_aim: "0",
+					priweap_ammo: 4,
+					priweap_ammo_max: 4,
+					priweap_critchance: 16,
+					priweap_mobility: 0,
+					priweap_aim: 0,
 					priweap_effects: "Aim +25; Aim -5 per tile > 1; Target Armor +50%",
 					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
@@ -405,11 +417,11 @@ on("change:priweap", function() {
 				setAttrs({
 					priweap_dmg: "3+1d3",
 					priweap_critdmg: "2",
-					priweap_ammo: "5",
-					priweap_ammo_max: "5",
-					priweap_critchance: "20",
-					priweap_mobility: "-1",
-					priweap_aim: "0",
+					priweap_ammo: 5,
+					priweap_ammo_max: 5,
+					priweap_critchance: 20,
+					priweap_mobility: -1,
+					priweap_aim: 0,
 					priweap_effects: "Aim -30 v adjacent, +5 per tile > 1 (max 0); 2 AP to fire",
 					mobility: parseInt(values.base_mobility) -1 + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
@@ -418,11 +430,11 @@ on("change:priweap", function() {
 				setAttrs({
 					priweap_dmg: "3+1d3",
 					priweap_critdmg: "2",
-					priweap_ammo: "5",
-					priweap_ammo_max: "5",
-					priweap_critchance: "12",
-					priweap_mobility: "0",
-					priweap_aim: "0",
+					priweap_ammo: 5,
+					priweap_ammo_max: 5,
+					priweap_critchance: 12,
+					priweap_mobility: 0,
+					priweap_aim: 0,
 					priweap_effects: "Aim -30 v adjacent, +5 per tile > 1 (max 0)",
 					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
@@ -431,11 +443,11 @@ on("change:priweap", function() {
 				setAttrs({
 					priweap_dmg: "3+1d3",
 					priweap_critdmg: "2",
-					priweap_ammo: "6",
-					priweap_ammo_max: "6",
-					priweap_critchance: "0",
-					priweap_mobility: "-1",
-					priweap_aim: "0",
+					priweap_ammo: 6,
+					priweap_ammo_max: 6,
+					priweap_critchance: 0,
+					priweap_mobility: -1,
+					priweap_aim: 0,
 					priweap_effects: "None",
 					mobility: parseInt(values.base_mobility) -1 + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
@@ -444,11 +456,11 @@ on("change:priweap", function() {
 				setAttrs({
 					priweap_dmg: "3+1d5",
 					priweap_critdmg: "4",
-					priweap_ammo: "8",
-					priweap_ammo_max: "8",
-					priweap_critchance: "0",
-					priweap_mobility: "-1",
-					priweap_aim: "0",
+					priweap_ammo: 8,
+					priweap_ammo_max: 8,
+					priweap_critchance: 0,
+					priweap_mobility: -1,
+					priweap_aim: 0,
 					priweap_effects: "Grants Squadsight ability; 2 AP to fire",
 					mobility: parseInt(values.base_mobility) -1 + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
@@ -457,11 +469,11 @@ on("change:priweap", function() {
 				setAttrs({
 					priweap_dmg: "0",
 					priweap_critdmg: "0",
-					priweap_ammo: "0",
-					priweap_ammo_max: "0",
-					priweap_critchance: "0",
-					priweap_mobility: "0",
-					priweap_aim: "0",
+					priweap_ammo: 0,
+					priweap_ammo_max: 0,
+					priweap_critchance: 0,
+					priweap_mobility: 0,
+					priweap_aim: 0,
 					priweap_effects: "Used to stun enemies; 92%/84%/68%/36% vs 1/2/3/4+ Health",
 					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
@@ -471,11 +483,11 @@ on("change:priweap", function() {
 				setAttrs({
 					priweap_dmg: "",
 					priweap_critdmg: "",
-					priweap_ammo: "",
-					priweap_ammo_max: "",
-					priweap_critchance: "",
-					priweap_mobility: "",
-					priweap_aim: "",
+					priweap_ammo: 0,
+					priweap_ammo_max: 0,
+					priweap_critchance: 0,
+					priweap_mobility: 0,
+					priweap_aim: 0,
 					priweap_effects: "",
 					mobility: parseInt(values.base_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
@@ -485,19 +497,32 @@ on("change:priweap", function() {
 });
 
 on("change:secweap", function() {
-	getAttrs(["secweap", "priweap_mobility", "base_mobility", "armor_mobility"], function(values) {
+	getAttrs(["secweap", "base_mobility", "priweap_mobility", "armor_mobility"], function(values) {
 		console.log("**XCOM** secweap = " + values.secweap);
-		switch(values.secweap) {
+		switch(values.secweap){
 			case "CombatKnife":
 				setAttrs({
 					secweap_dmg: "1+1d3",
 					secweap_critdmg: "3",
-					secweap_ammo: "Inf",
-					secweap_ammo_max: "Inf",
-					secweap_critchance: "20",
-					secweap_mobility: "0",
-					secweap_aim: "20",
+					secweap_ammo: 0,
+					secweap_ammo_max: 0,
+					secweap_critchance: 20,
+					secweap_mobility: 0,
+					secweap_aim: 20,
 					secweap_effects: "None",
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),
+				});
+				break;
+			case "Holotargeter":
+				setAttrs({
+					secweap_dmg: "",
+					secweap_critdmg: "",
+					secweap_ammo: 999,
+					secweap_ammo_max: 999,
+					secweap_critchance: 0,
+					secweap_mobility: 0,
+					secweap_aim: 0,
+					secweap_effects: "Aim +10 v Target; Ends turn",
 					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
@@ -505,83 +530,69 @@ on("change:secweap", function() {
 				setAttrs({
 					secweap_dmg: "1d3",
 					secweap_critdmg: "2",
-					secweap_ammo: "Inf",
-					secweap_ammo_max: "Inf",
-					secweap_critchance: "0",
-					secweap_mobility: "0",
-					secweap_aim: "0",
+					secweap_ammo: 999,
+					secweap_ammo_max: 999,
+					secweap_critchance: 0,
+					secweap_mobility: 0,
+					secweap_aim: 0,
 					secweap_effects: "Aim -5 per tile past 9",
-					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),,
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),
+				});
+				break;
+			case "RocketLauncher":
+				setAttrs({
+					secweap_dmg: "4+1d6",
+					secweap_critdmg: "3",
+					secweap_ammo: 2,
+					secweap_ammo_max: 2,
+					secweap_critchance: 0,
+					secweap_mobility: -1,
+					secweap_aim: 0,
+					secweap_effects: "Radius 3; Aim -30 if 2nd action",
+					mobility: parseInt(values.base_mobility) - 1 + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			case "SawedOffShotgun":
 				setAttrs({
 					secweap_dmg: "4+1d6",
 					secweap_critdmg: "4",
-					secweap_ammo: "1",
-					secweap_ammo_max: "1",
-					secweap_critchance: "16",
-					secweap_mobility: "-1",
-					secweap_aim: "20",
+					secweap_ammo: 1,
+					secweap_ammo_max: 1,
+					secweap_critchance: 16,
+					secweap_mobility: -1,
+					secweap_aim: 20,
 					secweap_effects: "Max range: 2 tiles; Target Armor +50%; No reloads",
-					mobility: parseInt(values.base_mobility) -1 + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),
+					mobility: parseInt(values.base_mobility) - 1 + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			case "Sword":
 				setAttrs({
 					secweap_dmg: "2+1d3",
 					secweap_critdmg: "3",
-					secweap_ammo: "Inf",
-					secweap_ammo_max: "Inf",
-					secweap_critchance: "10",
-					secweap_mobility: "0",
-					secweap_aim: "20",
+					secweap_ammo: 999,
+					secweap_ammo_max: 999,
+					secweap_critchance: 10,
+					secweap_mobility: 0,
+					secweap_aim: 20,
 					secweap_effects: "None",
-					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),,
-				});
-				break;
-			case "RocketLauncher":
-				setAttrs({
-					secweap_dmg: "4+1d6",
-					secweap_critdmg: "0",
-					secweap_ammo: "2",
-					secweap_ammo_max: "2",
-					secweap_critchance: "0",
-					secweap_mobility: "-1",
-					secweap_aim: "0",
-					secweap_effects: "Radius 3; Aim -30 if 2nd action",
-					mobility: parseInt(values.base_mobility) -1 + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),
-				});
-				break;
-			case "Holotargeter":
-				setAttrs({
-					secweap_dmg: "0",
-					secweap_critdmg: "0",
-					secweap_ammo: "Inf",
-					secweap_ammo_max: "Inf",
-					secweap_critchance: "0",
-					secweap_mobility: "0",
-					secweap_aim: "0",
-					secweap_effects: "Aim +10 v Target; ends turn",
 					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			default:
-				console.log("**XCOM** weapon invalid");
 				setAttrs({
 					secweap_dmg: "",
 					secweap_critdmg: "",
-					secweap_ammo: "",
-					secweap_ammo_max: "",
-					secweap_critchance: "",
-					secweap_mobility: "",
-					secweap_aim: "",
-					secweap_effects: "",
+					secweap_ammo: 0,
+					secweap_ammo_max: 0,
+					secweap_critchance: 0,
+					secweap_mobility: 0,
+					secweap_aim: 0,
+					secweap_effects: "None",
 					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 		}
-	});
+	});	
 });
 
 on("change:armor_name", function() {
@@ -638,7 +649,7 @@ on("change:armor_name", function() {
 });
 
 on("change:utilone", function() {
-	getAttrs(["utilone", "base_health", "armor_hp"], function(values) {
+	getAttrs(["utilone", "base_health", "armor_hp", "armor_mobility", "priweap_mobility", "base_mobility", "secweap_mobility", "priweap_ammo", "priweap_ammo_max"], function(values) {
 		console.log("**XCOM** utilone = " + values.utilone);
 		switch(values.utilone) {
 			case "AlienTrophy":
@@ -646,13 +657,29 @@ on("change:utilone", function() {
 					utilone_effects: "Gains Steadfast ability",
 					utilone_health: 0,
 					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
+					utilone_priweap_ammo: 0,
+					utilone_crit: 0,
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			case "APGrenade":
 				setAttrs({
-					utilone_effects: "6 damage; range 4; radius 2; destroys loot and cover",
+					utilone_effects: "4 damage; range 7; radius 2; blocked by cover",
 					utilone_health: 0,
 					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
+					utilone_priweap_ammo: 0,
+					utilone_crit: 0,
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
+				});
+				break;
+			case "BattleScanner":
+				setAttrs({
+					utilone_effects: "Reveals the area in Radius 5 for 2 turns; 5-turn cooldown",
+					utilone_health: 0,
+					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
+					utilone_priweap_ammo: 0,
+					utilone_crit: 0,
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			case "BattleScanner":
@@ -660,21 +687,124 @@ on("change:utilone", function() {
 					utilone_effects: "Reveals the area in Radius 5 for 2 turns; range 5",
 					utilone_health: 0,
 					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
+					utilone_priweap_ammo: 0,
+					utilone_crit: 0,
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			case "CeramicPlating":
 				setAttrs({
 					utilone_health: 1,
 					hp: parseInt(values.base_health) + parseInt(values.armor_hp) + 1,
+					utilone_priweap_ammo: 0,
+					utilone_crit: 0,
 					utilone_effects: "Can't stack plating",
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
+				});
+				break;
+			case "DrumMags":
+				setAttrs({
+					utilone_health: 0,
+					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
+					mobility: parseInt(values.base_mobility) - 1 + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
+					utilone_effects: "Mobility -1; Primary weapon +2 ammo; grants Flush ability",
+					utilone_priweap_ammo: 2,
+					utilone_crit: 0,
+					priweap_ammo: parseInt(values.priweap_ammo) + 2,
+					priweap_ammo_max: parseInt(values.priweap_ammo_max) + 2,
+				});
+				break;
+			case "Flashbang":
+				setAttrs({
+					utilone_effects: "Disorients all enemies in Radius 2 for 1 turn; range 9",
+					utilone_health: 0,
+					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
+					utilone_priweap_ammo: 0,
+					utilone_crit: 0,
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
+				});
+				break;
+			case "HEGrenade":
+				setAttrs({
+					utilone_effects: "6 damage; range 4; radius 2; destroys loot and cover",
+					utilone_health: 0,
+					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
+					utilone_priweap_ammo: 0,
+					utilone_crit: 0,
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
+				});
+				break;
+			case "HighCapMags":
+				setAttrs({
+					utilone_health: 0,
+					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
+					utilone_effects: "Primary weapon +1 ammo",
+					utilone_priweap_ammo: 1,
+					utilone_crit: 0,
+					priweap_ammo: parseInt(values.priweap_ammo) + 1,
+					priweap_ammo_max: parseInt(values.priweap_ammo_max) + 1,
+				});
+				break;
+			case "LaserSight":
+				setAttrs({
+					utilone_health: 0,
+					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
+					utilone_effects: "Crit +20",
+					utilone_priweap_ammo: 0,
+					utilone_crit: 20,
+				});
+				break;
+			case "Medkit":
+				setAttrs({
+					utilone_health: 0,
+					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
+					utilone_effects: "Heal self or ally for 3 HP; removes acid; stabilize ally; range 1",
+					utilone_priweap_ammo: 0,
+					utilone_crit: 0,
+				});
+				break;
+			case "Rocket":
+				setAttrs({
+					utilone_health: 0,
+					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
+					mobility: parseInt(values.base_mobility) - 1 + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
+					utilone_effects: "Extra rocket; -1 Mobility",
+					utilone_priweap_ammo: 0,
+					utilone_crit: 0,
+				});
+				break;
+			case "ShredderRocket":
+				setAttrs({
+					utilone_health: 0,
+					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
+					mobility: parseInt(values.base_mobility) - 1 + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
+					utilone_effects: "2 damage and shred target; -1 Mobility",
+					utilone_priweap_ammo: 0,
+					utilone_crit: 0,
+				});
+				break;
+			case "SmokeGrenade":
+				setAttrs({
+					utilone_effects: "Leaves smoke (defense +20) in Radius 1 for 2 turns; range 9",
+					utilone_health: 0,
+					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
+					utilone_priweap_ammo: 0,
+					utilone_crit: 0,
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 			default:
-				console.log("**XCOM** armor invalid");
+				console.log("**XCOM** utilone invalid");
 				setAttrs({
 					utilone_effects: "None",
-					utilone_health: 1,
+					utilone_health: 0,
+					utilone_priweap_ammo: 0,
+					utilone_crit: 0,
 					hp: parseInt(values.base_health) + parseInt(values.armor_hp),
+					mobility: parseInt(values.base_mobility) + parseInt(values.priweap_mobility) + parseInt(values.secweap_mobility) + parseInt(values.armor_mobility),
 				});
 				break;
 		}
